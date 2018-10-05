@@ -1,0 +1,40 @@
+package com.littlepage.testjdbc;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+/*
+ * 手写简易静态服务器
+ */
+public class SimpleServlet {
+    public static void main(String[] args) {
+        try {
+            //1.创建ServerSocket套接字
+            ServerSocket ss=new ServerSocket(9999);
+            //2.循环保证多次访问
+            while(true) {
+                //创建套接字接收服务器访问
+                Socket s=ss.accept();
+                //打印证明有人访问端口
+                System.out.println("9999端口有人访问");
+                //创建输出流
+                OutputStream ops=s.getOutputStream();
+                //读入E://1.html的文件
+                BufferedReader bf=new BufferedReader(new FileReader("E:\\1.html"));
+                String buffer="";
+                //写入网页
+                while((buffer=bf.readLine())!=null){
+                    ops.write(buffer.getBytes());
+                }
+                //关闭3个流
+                bf.close();
+                ops.close();
+                s.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
