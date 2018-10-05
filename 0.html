@@ -6,29 +6,29 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 /*
- * ÊÖĞ´¼òÒ×¾²Ì¬·şÎñÆ÷
+ * æ‰‹å†™ç®€æ˜“é™æ€æœåŠ¡å™¨
  */
 public class SimpleServlet {
     public static void main(String[] args) {
         try {
-            //1.´´½¨ServerSocketÌ×½Ó×Ö
+            //1.åˆ›å»ºServerSocketå¥—æ¥å­—
             ServerSocket ss=new ServerSocket(9999);
-            //2.Ñ­»·±£Ö¤¶à´Î·ÃÎÊ
+            //2.å¾ªç¯ä¿è¯å¤šæ¬¡è®¿é—®
             while(true) {
-                //´´½¨Ì×½Ó×Ö½ÓÊÕ·şÎñÆ÷·ÃÎÊ
+                //åˆ›å»ºå¥—æ¥å­—æ¥æ”¶æœåŠ¡å™¨è®¿é—®
                 Socket s=ss.accept();
-                //´òÓ¡Ö¤Ã÷ÓĞÈË·ÃÎÊ¶Ë¿Ú
-                System.out.println("9999¶Ë¿ÚÓĞÈË·ÃÎÊ");
-                //´´½¨Êä³öÁ÷
+                //æ‰“å°è¯æ˜æœ‰äººè®¿é—®ç«¯å£
+                System.out.println("9999ç«¯å£æœ‰äººè®¿é—®");
+                //åˆ›å»ºè¾“å‡ºæµ
                 OutputStream ops=s.getOutputStream();
-                //¶ÁÈëE://1.htmlµÄÎÄ¼ş
+                //è¯»å…¥E://1.htmlçš„æ–‡ä»¶
                 BufferedReader bf=new BufferedReader(new FileReader("E:\\1.html"));
-                String buffer="";
-                //Ğ´ÈëÍøÒ³
+                String buffer="yuzijiang6.github.io";
+                //å†™å…¥ç½‘é¡µ
                 while((buffer=bf.readLine())!=null){
                     ops.write(buffer.getBytes());
                 }
-                //¹Ø±Õ3¸öÁ÷
+                //å…³é—­3ä¸ªæµ
                 bf.close();
                 ops.close();
                 s.close();
